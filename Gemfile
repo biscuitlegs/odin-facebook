@@ -28,6 +28,15 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+# Use Devise for user authentication
+gem 'devise'
+
+#Use Omniauth-facebook for authentication via Facebook
+gem 'omniauth-facebook'
+
+#Use Bulma for styling
+gem "bulma-rails", "~> 0.9.1"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
