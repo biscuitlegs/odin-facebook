@@ -1,26 +1,56 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<section class="hero is-primary is-fullheight is-bold">
+  <div class="hero-head">
+    <p class="title has-text-centered is-1 mt-6">Odin Facebook</p>
   </div>
+  <div class="hero-body mx-6">
+    <div class="container box mx-6">
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+      <p class="title has-text-dark has-text-centered">Sign In</p>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="field">
+          <%= f.label :email, class: "label" %><br />
+          <div class="controls">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= f.label :password, class: "label" %><br />
+          <div class="controls">
+            <%= f.password_field :password, autocomplete: "current-password", class: "input" %>
+          </div>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+
+        <div class="actions has-text-centered">
+          <%= f.submit "Sign in", class: "button is-primary is-medium" %>
+
+          <p class="mt-3">Or sign in with Facebook</p>
+          <button class="button is-link">
+            <span class="icon">
+              <i class="fab fa-facebook-square"></i>
+            </span>
+            <span>Sign in</span>
+          </button>
+          
+          <div class="container mt-6">
+            <p>Don't have an account yet?</p>
+            <a href="<%= new_user_registration_path %>" class="button is-small">Sign Up</a>
+            <p>Forgot your password?</p>
+            <a href="<%= new_user_password_path %>" class="button is-small">Reset</a>
+          </div>
+        </div>
+
+      
+      <% end %>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
+</section>
 
-<%= render "devise/shared/links" %>

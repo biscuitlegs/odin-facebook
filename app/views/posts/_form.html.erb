@@ -1,0 +1,23 @@
+<div class="container has-text-centered">
+  <%= form_with(model: post, local: true) do |form| %>
+    <% if post.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+        <ul>
+          <% post.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= form.text_area :body, class: "textarea", placeholder: "Exciting new posts are made here..." %>
+    </div>
+
+    <div class="actions mt-5">
+      <%= form.submit "Post", class: "button is-primary" %>
+    </div>
+  <% end %>
+</div>
