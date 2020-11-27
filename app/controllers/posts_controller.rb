@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
     @post = Post.new
+    @friend_request = FriendRequest.new
   end
 
   # GET /posts/1

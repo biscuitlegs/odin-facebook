@@ -47,6 +47,21 @@
         </div>
         <div class="navbar-end">
           <div class="navbar-item">
+          <% if user_signed_in? %>
+            <% if current_user.received_friend_requests.count > 0 %>
+              <a href="<%= friend_requests_path %>" class="button is-info">
+                  <span class="icon"><i class="fas fa-envelope"></i></span>
+                  <span>Friend Requests <%= current_user.received_friend_requests.count %></span>
+              </a>
+            <% else %>
+              <a href="<%= friend_requests_path %>" class="button">
+                  <span class="icon"><i class="fas fa-envelope"></i></span>
+                  <span>Friend Requests <%= current_user.received_friend_requests.count %></span>
+              </a>
+            <% end %>
+          <% end %>
+          </div>
+          <div class="navbar-item">
             <div class="buttons">
               <a href="<%= destroy_user_session_path %>"class="button is-primary" data-method="delete">
                 <strong>Sign Out</strong>
@@ -62,7 +77,7 @@
       </div>
     <% end %>
     <% if alert %>
-      <div class="notification is-primary">
+      <div class="notification is-warning">
         <%= flash[:alert] %>
       </div>
     <% end %>
