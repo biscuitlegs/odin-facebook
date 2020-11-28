@@ -48,6 +48,10 @@
         <div class="navbar-end">
           <div class="navbar-item">
           <% if user_signed_in? %>
+            <a href="<%= friendships_path %>" class="button">
+              <span class="icon"><i class="fas fa-user-friends"></i></span>
+              <span>Friends</span>
+            </a>
             <% if current_user.received_friend_requests.count > 0 %>
               <a href="<%= friend_requests_path %>" class="button is-info">
                   <span class="icon"><i class="fas fa-envelope"></i></span>

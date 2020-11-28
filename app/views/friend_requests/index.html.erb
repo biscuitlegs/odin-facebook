@@ -1,10 +1,9 @@
 <section>
     <div class="box mx-6 my-6">
-        <p class="title has-text-centered">Your Friend Requests</p>
-        <div class="level">
-            <% @friend_requests.each do |request| %>
-                <% user = User.find(request.sending_user_id) %>
-
+        <p class="title has-text-centered">Received Friend Requests</p>
+        <% @friend_requests.each do |request| %>
+            <% user = User.find(request.sending_user_id) %>
+            <div class="level">
                 <div class="level-left">
                     <div class="level-item has-text-centered">
                         <p class="image is-64x64">
@@ -13,14 +12,13 @@
                     </div>
                     <div class="level-item has-text-centered">
                         <p class="subtitle">
-                            <%= user.first_name %>
-                            <%= user.last_name %>
+                            <%= user.full_name %>
                         </p>
                     </div>
                 </div>
                 <div class="level-right">
                     <div class="level-item has-text-centered">
-                        <a href="" class="button is-success">
+                        <a href="<%= friendships_path(friendship: { friend_one_id: request.sending_user_id, friend_two_id: request.receiving_user_id }, friend_request_id: request.id) %>" class="button is-primary" data-method="post">
                             <span class="icon is-large"><i class="far fa-check-circle fa-2x"></i></span>
                             <span>Accept</span>
                         </a>
@@ -32,7 +30,7 @@
                         </a>
                     </div>
                 </div>
-            <% end %>
-        </div>
+            </div>
+        <% end %>
     </div>
 </section>

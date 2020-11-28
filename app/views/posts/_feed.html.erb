@@ -7,12 +7,15 @@
         </figure>
         <div class="media-content">
             <div class="content">
-                <% if current_user.id != post.user.id %>
+                <% if current_user.id != post.user.id && !current_user.friends.include?(post.user) %>
                     <a href="<%= friend_requests_path(friend_request: { receiving_user_id: post.user.id, sending_user_id: current_user.id }) %>" data-method="post">
                         <span class="icon"><i class="fas fa-user-plus"></i></span>
                     </a>
                 <% end %>
 
+                <% if current_user.id != post.user.id && current_user.friends.include?(post.user) %>
+                    <span class="icon"><i class="fas fa-user-friends"></i></span>
+                <% end %>
                 <!-- AFTER ADDING FRIENDS FEATURE: Different icon here if user of post is friend of current_user -->
 
                 <strong><%= post.user.full_name %></strong>
