@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :posts
-  resources :friend_requests, only: [:index, :create]
+  resources :friend_requests, only: [:index, :create, :destroy]
   devise_for :users
   devise_scope :user do
     authenticated :user do
