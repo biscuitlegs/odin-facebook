@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_current_user_owns_post, only: [:destroy, :edit, :update]
 
   # GET /posts
   # GET /posts.json
@@ -16,7 +17,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    redirect_to authenticated_root_path
+    #redirect_to authenticated_root_path
     #@post = Post.new
   end
 
@@ -74,5 +75,15 @@ class PostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def post_params
       params.require(:post).permit(:body)
+    end
+
+    def current_user_owns_post?(post)
+      current_user.id == post.user_id ? true : false
+    end
+
+    def ensure_current_user_owns_post
+      unless current_user_owns_post?(@post)
+        redirect_to authenticated_root_path, alert: "You can only manage your own posts!"
+      end
     end
 end

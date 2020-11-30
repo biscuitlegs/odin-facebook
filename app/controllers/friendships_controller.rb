@@ -1,4 +1,8 @@
 class FriendshipsController < ApplicationController
+    before_action :new_friendship, only: :create
+    before_action :set_friendship, only: :destroy
+    before_action :ensure_corresponding_friend_request, only: [:create, :destroy]
+    
     def index
         @friends = current_user.friends
         @friendships_and_occurrences = current_user.friendships.to_a + current_user.occurrences_as_friend.to_a
@@ -12,8 +16,6 @@ class FriendshipsController < ApplicationController
     end
 
     def create
-        @friendship = Friendship.new(friendship_params)
-
         if @friendship.save
             @friend_request = FriendRequest.find(params[:friend_request_id])
             @friend_request.destroy
@@ -25,7 +27,6 @@ class FriendshipsController < ApplicationController
     end
 
     def destroy
-        @friendship = Friendship.find(params[:id])
         @friendship.destroy
 
         redirect_to friendships_path, notice: "Successfully removed user from your friends list."
@@ -36,5 +37,31 @@ class FriendshipsController < ApplicationController
 
     def friendship_params
         params.require(:friendship).permit(:friend_one_id, :friend_two_id)
+    end
+
+    def ensure_corresponding_friend_request
+        unless corresponding_friend_request?(@friendship)
+            redirect_to authenticated_root_path, alert: "You can only manage friend requests addressed you yourself!"
+        end
+    end
+
+    def corresponding_friend_request?(friendship)
+        if FriendRequest.where(
+            sending_user_id: friendship.friend_one_id,
+            receiving_user_id: friendship.friend_two_id).any? &&
+            friendship.friend_two_id == current_user.id
+           
+            return true
+        end
+
+        false
+    end
+
+    def set_friendship
+        @friendship = Friendship.find(params[:id])
+    end
+
+    def new_friendship
+        @friendship = Friendship.new(friendship_params)
     end
 end

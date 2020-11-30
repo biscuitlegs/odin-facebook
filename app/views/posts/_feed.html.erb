@@ -16,7 +16,6 @@
                 <% if current_user.id != post.user.id && current_user.friends.include?(post.user) %>
                     <span class="icon"><i class="fas fa-user-friends"></i></span>
                 <% end %>
-                <!-- AFTER ADDING FRIENDS FEATURE: Different icon here if user of post is friend of current_user -->
 
                 <strong><%= post.user.full_name %></strong>
                 <small><%= distance_of_time_in_words(Time.now, post.created_at) %> ago</small>
