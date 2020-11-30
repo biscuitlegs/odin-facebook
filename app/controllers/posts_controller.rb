@@ -8,6 +8,7 @@ class PostsController < ApplicationController
     @posts = Post.all
     @post = Post.new
     @friend_request = FriendRequest.new
+    @comment = Comment.new
   end
 
   # GET /posts/1
@@ -17,8 +18,6 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    #redirect_to authenticated_root_path
-    #@post = Post.new
   end
 
   # GET /posts/1/edit

@@ -1,0 +1,25 @@
+<div class="container has-text-centered">
+  <%= form_with(model: @comment, local: true) do |form| %>
+    <%= form.hidden_field :post_id, value: post_id %>
+
+    <% if @comment.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+        <ul>
+          <% @comment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= form.text_area :body, class: "textarea", placeholder: "Leave a comment..." %>
+    </div>
+
+    <div class="actions mt-5">
+      <%= form.submit "Comment", class: "button is-primary" %>
+    </div>
+  <% end %>
+</div>
