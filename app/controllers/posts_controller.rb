@@ -5,7 +5,14 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    
+    if params[:my_feed]
+      @friend_ids = current_user.friends.pluck(:id)
+      @posts = Post.where("user_id IN (?) OR user_id = ?", @friend_ids, current_user.id).order(created_at: :desc)
+    else
+      @posts = Post.order(created_at: :desc)
+    end
+
     @post = Post.new
     @friend_request = FriendRequest.new
     @comment = Comment.new

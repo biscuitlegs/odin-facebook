@@ -4,6 +4,10 @@
 </section>
 
 <section class="box mx-6 mb-3">
-  <p class="title has-text-centered">My Feed</p>
+  <% if params[:my_feed] %>
+    <p class="title has-text-centered">My Feed</p>
+  <% else %>
+    <p class="title has-text-centered">Explore</p>
+  <% end %>
   <%= render "posts/feed" %>
 </section>

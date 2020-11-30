@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "/posts/my_feed", to: "posts#index", my_feed: true, as: "my_feed"
+
   resources :posts
   resources :friend_requests, only: [:index, :create, :destroy]
   resources :friendships, only: [:index, :create, :destroy]
