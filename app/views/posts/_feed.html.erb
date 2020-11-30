@@ -24,9 +24,18 @@
             </div>
             <nav class="level is-mobile">
                 <div class="level-left">
-                <a href="" class="level-item">
-                    <span class="icon"><i class="far fa-heart"></i></span>
-                </a>
+                <% if current_user.id != post.user_id %>
+                    <% if current_user.liked_posts.any? { |liked_post| liked_post.id == post.id } %>
+                        <a href="<%= like_path(Like.find_by(user_id: current_user.id, post_id: post.id)) %>" data-method="delete" class="level-item">
+                        <span class="icon"><i class="fas fa-heart is-danger"></i></span>
+                        </a>
+                    <% else %>
+                        <a href="<%= likes_path(like: { user_id: current_user.id, post_id: post.id }) %>" data-method="post" class="level-item">
+                        <span class="icon"><i class="far fa-heart"></i></span>
+                        </a>
+                    <% end %>
+                <% end %>
+                
                 <a href="" class="level-item">
                     <span class="icon"><i class="far fa-comment-dots"></i></span>
                 </a>

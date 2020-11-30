@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   has_many :posts
 
+  has_many :likes
+  has_many :liked_posts, through: :likes, source: :post
+
   has_many :friendships, foreign_key: "friend_one_id"
   has_many :occurrences_as_friend, class_name: "Friendship", foreign_key: "friend_two_id"
   
