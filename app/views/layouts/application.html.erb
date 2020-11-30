@@ -46,25 +46,25 @@
           </div>
         </div>
         <div class="navbar-end">
-          <div class="navbar-item">
           <% if user_signed_in? %>
-            <a href="<%= friendships_path %>" class="button">
+            <a href="<%= friendships_path %>" class="navbar-item">
               <span class="icon"><i class="fas fa-user-friends"></i></span>
-              <span>Friends</span>
+              <span></span>
             </a>
+          
             <% if current_user.received_friend_requests.count > 0 %>
-              <a href="<%= friend_requests_path %>" class="button is-info">
+              <a href="<%= friend_requests_path %>" class="navbar-item has-text-info">
                   <span class="icon"><i class="fas fa-envelope"></i></span>
-                  <span>Friend Requests <%= current_user.received_friend_requests.count %></span>
+                  <span><%= current_user.received_friend_requests.count %></span>
               </a>
             <% else %>
-              <a href="<%= friend_requests_path %>" class="button">
+              <a href="<%= friend_requests_path %>" class="navbar-item">
                   <span class="icon"><i class="fas fa-envelope"></i></span>
-                  <span>Friend Requests <%= current_user.received_friend_requests.count %></span>
+                  <span><%= current_user.received_friend_requests.count %></span>
               </a>
             <% end %>
           <% end %>
-          </div>
+          
           <div class="navbar-item">
             <div class="buttons">
               <a href="<%= destroy_user_session_path %>"class="button is-primary" data-method="delete">
