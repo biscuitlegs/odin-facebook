@@ -11,7 +11,7 @@
                 <div class="container">
                     <% if @user.profile_picture.attached? %>
                         <figure class="image is-128x128">
-                            <%= image_tag(current_user.profile_picture.variant(resize_to_fill: [128, 128]), class: "is-rounded") %>
+                            <%= image_tag(@user.profile_picture.variant(resize_to_fill: [128, 128]), class: "is-rounded") %>
                         </figure>
                     <% else %>
                         <figure class="image is-128x128">

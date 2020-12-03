@@ -7,7 +7,7 @@
     <div class="field">
         <div class="file">
             <label class="file-label">
-                <%= f.file_field :profile_picture, class: "file-input" %>
+                <%= f.file_field :profile_picture, class: "file-input", accept: "image/png, image/jpg, image/jpeg" %>
                 <span class="file-cta">
                     <span class="file-icon">
                         <i class="fas fa-upload"></i>
@@ -17,7 +17,7 @@
                     </span>
                 </span>
                 <span class="file-name">
-                    Screen Shot 2017-07-29 at 15.54.25.png
+                    No file selected.
                 </span>
             </label>
         </div>
@@ -50,3 +50,5 @@
         </div>
     </div>
 <% end %>
+
+<%= javascript_pack_tag 'image_upload' %>
