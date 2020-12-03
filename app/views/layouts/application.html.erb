@@ -46,9 +46,11 @@
         </div>
         <div class="navbar-end">
           <% if user_signed_in? %>
-            <a href="<%= friendships_path %>" class="navbar-item">
+            <a href="<%= user_path(current_user) %>" class="navbar-item">
+              <span class="icon"><i class="fas fa-user-circle"></i></span>
+            </a>
+            <a href="<%= friends_path %>" class="navbar-item">
               <span class="icon"><i class="fas fa-user-friends"></i></span>
-              <span></span>
             </a>
           
             <% if current_user.received_friend_requests.count > 0 %>

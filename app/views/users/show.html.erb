@@ -1,0 +1,27 @@
+<section>
+    <div class="container box mt-6">
+        <% if current_user.id == @user.id %>
+            <p class="title has-text-centered mb-6">My Profile</p>
+        <% else %>
+            <p class="title has-text-centered mb-6"><%= @user.full_name %>'s Profile</p>
+        <% end %>
+
+        <div class="columns is-mobile is-centered">
+            <div class="column is-narrow">
+                <div class="container">
+                    <figure class="image is-128x128">
+                        <img src="https://bulma.io/images/placeholders/128x128.png">
+                    </figure>
+                </div>
+            </div>
+        </div>
+        <p class="has-text-centered is-size-5"><strong><%= @user.full_name %></strong></p>
+        <p class="has-text-centered"><%= @user.email %></p>
+
+        <% if current_user.id == @user.id %>
+            <%= render "users/form" %>
+        <% end %>
+    </div>
+</section>
+
+
