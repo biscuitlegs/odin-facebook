@@ -1,22 +1,49 @@
 <%= form_with model: @user, local: true do |f| %>
+
+    <div class="label">
+        <%= f.label :profile_picture %>
+    </div>
+
+    <div class="field">
+        <div class="file">
+            <label class="file-label">
+                <%= f.file_field :profile_picture, class: "file-input" %>
+                <span class="file-cta">
+                    <span class="file-icon">
+                        <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">
+                        Choose an image...
+                    </span>
+                </span>
+                <span class="file-name">
+                    Screen Shot 2017-07-29 at 15.54.25.png
+                </span>
+            </label>
+        </div>
+    </div>
+
     <div class="field">
         <%= f.label :first_name, class: "label" %>
         <div class="control">
             <%= f.text_field :first_name, class: "input" %>
         </div>
     </div>
+
     <div class="field">
         <%= f.label :last_name, class: "label" %>
         <div class="control">
             <%= f.text_field :last_name, class: "input" %>
         </div>
     </div>
+
     <div class="field">
         <%= f.label :email, class: "label" %>
         <div class="control">
             <%= f.email_field :email, class: "input" %>
         </div>
     </div>
+
     <div class="field has-text-centered">
         <div class="control">
             <%= f.submit class: "button is-primary"%>

@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :friendships, only: [:index, :create, :destroy]
   resources :likes, only: [:create, :destroy]
   resources :comments, only: [:create, :destroy]
-  resources :users
 
   devise_for :users
   devise_scope :user do
@@ -18,4 +17,6 @@ Rails.application.routes.draw do
       root to: "devise/registrations#new", as: :unauthenticated_root
     end
   end
+
+  resources :users, only: [:show, :update]
 end
