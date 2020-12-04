@@ -64,6 +64,14 @@
             <div class="container has-text-centered">
                 <div class="box">
                     <div class="title">Posts</div>
+
+                    <% @user.posts.each do |post| %>
+                        <div class="box">
+                            <p class="subtitle"><%= post.body %></p>
+                            <strong><%= distance_of_time_in_words(Time.now, post.created_at) %> ago.</strong>
+                        </div>
+                    <% end %>
+
                 </div>
             </div>
             
