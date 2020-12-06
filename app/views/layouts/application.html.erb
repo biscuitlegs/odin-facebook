@@ -48,20 +48,24 @@
           <% if user_signed_in? %>
             <a href="<%= user_path(current_user) %>" class="navbar-item">
               <span class="icon"><i class="fas fa-user-circle"></i></span>
+              <span>Profile</span>
             </a>
             <a href="<%= friends_path %>" class="navbar-item">
               <span class="icon"><i class="fas fa-user-friends"></i></span>
+              <span>Friends</span>
             </a>
           
             <% if current_user.received_friend_requests.count > 0 %>
               <a href="<%= friend_requests_path %>" class="navbar-item has-text-info">
                   <span class="icon"><i class="fas fa-envelope"></i></span>
-                  <span><%= current_user.received_friend_requests.count %></span>
+                  <span>Requests</span>
+                  <span>(<%= current_user.received_friend_requests.count %>)</span>
               </a>
             <% else %>
               <a href="<%= friend_requests_path %>" class="navbar-item">
                   <span class="icon"><i class="fas fa-envelope"></i></span>
-                  <span><%= current_user.received_friend_requests.count %></span>
+                  <span>Requests</span>
+                  <span>(<%= current_user.received_friend_requests.count %>)</span>
               </a>
             <% end %>
           <% end %>
@@ -87,5 +91,7 @@
       </div>
     <% end %>
     <%= yield %>
+
+    <%= javascript_pack_tag 'navbar_menu' %>
   </body>
 </html>
