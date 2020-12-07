@@ -13,4 +13,12 @@ class FriendRequest < ApplicationRecord
             errors.add(:receiving_user_id, "Must be a unique pair with :sending_user_id")
         end
     end
+
+    def self.from_to(sender, receiver)
+        if self.where(sending_user_id: sender.id, receiving_user_id: receiver.id).any?
+            return true
+        end
+
+        false
+    end
 end

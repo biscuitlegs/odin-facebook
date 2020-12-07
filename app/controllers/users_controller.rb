@@ -1,4 +1,12 @@
 class UsersController < ApplicationController
+    def index
+        if params[:search]
+            @users = User.where("LOWER(CONCAT(first_name, last_name)) LIKE LOWER(?)", "%#{params[:search]}%")
+        else
+            @users = User.where("id != ?", current_user.id)
+        end
+    end
+
     def show
         @user = User.find(params[:id])
     end
