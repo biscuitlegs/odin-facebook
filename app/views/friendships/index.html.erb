@@ -6,27 +6,32 @@
             <div class="level">
                 <div class="level-left">
                     <div class="level-item has-text-centered">
-                        <p class="image is-64x64">
-                            <% if friend.profile_picture.attached? %>
-                                <%= image_tag(friend.profile_picture.variant(resize_to_fill: [64, 64]), class: "is-rounded") %>
-                            <% else %>
-                                <img src="https://bulma.io/images/placeholders/128x128.png" class="is-rounded">
-                            <% end %>
-                        </p>
+                        <a href="<%= user_path(friend) %>">
+                            <p class="image is-64x64">
+                                <% if friend.profile_picture.attached? %>
+                                    <%= image_tag(friend.profile_picture.variant(resize_to_fill: [64, 64]), class: "is-rounded") %>
+                                <% else %>
+                                    <img src="https://bulma.io/images/placeholders/128x128.png" class="is-rounded">
+                                <% end %>
+                            </p>
+                        </a>
                     </div>
                     <div class="level-item has-text-centered">
-                        <p class="subtitle">
-                            <%= friend.full_name %>
-                        </p>
+                        <a href="<%= user_path(friend) %>">
+                            <p class="is-size-5">
+                                <%= friend.full_name %>
+                            </p>
+                        </a>
                     </div>
                 </div>
-                <div class="level-right">
+                <div class="level-right has-text-centered">
                     <a href="<%= friendship_path(friendship) %>" data-method="delete" data-confirm="Are you sure you want to remove this user from your friends list?" class="button is-danger">
                         <span class="icon"><i class="fas fa-user-times"></i></span>
                         <span>Unfriend</span>
                     </a>
                 </div>
             </div>
+            <hr>
         <% end %>
     </div>
 </section>
