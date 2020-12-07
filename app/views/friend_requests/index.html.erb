@@ -24,18 +24,19 @@
                 <div class="level-right">
                     <div class="level-item has-text-centered">
                         <a href="<%= friendships_path(friendship: { friend_one_id: request.sending_user_id, friend_two_id: request.receiving_user_id }, friend_request_id: request.id) %>" class="button is-primary" data-method="post">
-                            <span class="icon is-large"><i class="far fa-check-circle fa-2x"></i></span>
+                            <span class="icon is-large"><i class="fas fa-check-circle fa-lg"></i></span>
                             <span>Accept</span>
                         </a>
                     </div>
                     <div class="level-item has-text-centered">
                         <a href="<%= friend_request_path(request) %>" class="button is-danger" data-method="delete">
-                            <span class="icon is-large"><i class="far fa-times-circle fa-2x"></i></span>
+                            <span class="icon is-large"><i class="fas fa-times-circle fa-lg"></i></span>
                             <span>Decline</span>
                         </a>
                     </div>
                 </div>
             </div>
+            <hr>
         <% end %>
     </div>
 </section>
