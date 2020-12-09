@@ -38,7 +38,11 @@
                 <div class="columns is-mobile is-centered">
                     <div class="column is-narrow">
                         <div class="container">
-                            <% if @user.profile_picture.attached? %>
+                            <% if @user.facebook_profile_picture %>
+                                <figure class="image is-128x128">
+                                    <img src="<%= @user.facebook_profile_picture %>" alt="profile picture" class="is-rounded">
+                                </figure>
+                            <% elsif @user.profile_picture.attached? %>
                                 <figure class="image is-128x128">
                                     <%= image_tag(@user.profile_picture.variant(resize_to_fill: [128, 128]), class: "is-rounded") %>
                                 </figure>
@@ -54,8 +58,28 @@
                 <p class="has-text-centered is-size-5"><strong><%= @user.full_name %></strong></p>
                 <p class="has-text-centered"><%= @user.email %></p>
 
-                <% if current_user.id == @user.id %>
+                <% if @user.provider == "facebook" %>
+                    <div class="columns is-mobile is-centered">
+                        <div class="column is-narrow">
+                            <span class="tag is-info is-centered">
+                                <span class="icon">
+                                    <i class="fab fa-facebook-square"></i>
+                                </span>
+                                <span>Linked with Facebook</span>
+                            </span>
+                        </div>
+                    </div>
+                    
+                <% end %>
+
+                <% if current_user.provider != "facebook" && current_user.id == @user.id %>
                     <%= render "users/form" %>
+                <% end %>
+
+                <% if current_user.provider == "facebook" && current_user.id == @user.id %>
+                    <div class="notification">
+                        <p>Whenever you update your Facebook profile, any changes will automatically carry over to your profile here.</p>
+                    </div>
                 <% end %>
             </div>
         </div>
