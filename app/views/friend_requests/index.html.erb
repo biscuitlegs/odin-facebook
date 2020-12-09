@@ -7,14 +7,18 @@
             <div class="level">
                 <div class="level-left">
                     <div class="level-item has-text-centered">
-                        <p class="image is-64x64">
-                            <%= image_tag sending_user.primary_profile_picture, class: "is-rounded" %>
-                        </p>
+                        <a href="<%= user_path(sending_user) %>">
+                            <p class="image is-64x64">
+                                <%= image_tag sending_user.primary_profile_picture, class: "is-rounded" %>
+                            </p>
+                        </a>
                     </div>
                     <div class="level-item has-text-centered">
-                        <p class="subtitle">
-                            <%= sending_user.full_name %>
-                        </p>
+                        <a href="<%= user_path(sending_user) %>">
+                            <p class="is-size-5">
+                                <%= sending_user.full_name %>
+                            </p>
+                        </a>
                     </div>
                 </div>
                 <div class="level-right">
