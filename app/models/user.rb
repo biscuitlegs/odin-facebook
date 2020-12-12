@@ -1,20 +1,19 @@
 class User < ApplicationRecord
-  require 'open-uri'
 
-  has_one_attached :profile_picture
+  has_one_attached :profile_picture, dependent: :destroy
 
-  has_many :posts
-  has_many :comments
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post
 
-  has_many :friendships, foreign_key: "friend_one_id"
+  has_many :friendships, foreign_key: "friend_one_id", dependent: :destroy
   has_many :occurrences_as_friend, class_name: "Friendship", foreign_key: "friend_two_id"
   
 
-  has_many :received_friend_requests, class_name: "FriendRequest", foreign_key: "receiving_user_id"
-  has_many :sent_friend_requests, class_name: "FriendRequest", foreign_key: "sending_user_id"
+  has_many :received_friend_requests, class_name: "FriendRequest", foreign_key: "receiving_user_id", dependent: :destroy
+  has_many :sent_friend_requests, class_name: "FriendRequest", foreign_key: "sending_user_id", dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
