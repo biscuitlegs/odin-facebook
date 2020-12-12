@@ -7,23 +7,29 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 #Users
-sherlock = User.create!(first_name: "Sherlock",
+sherlock = User.new(first_name: "Sherlock",
                         last_name: "Holmes",
                         email: "sh@example.com",
                         password: "123456", 
                         password_confirmation: "123456")
+sherlock.skip_confirmation!
+sherlock.save!
 
-charles = User.create!(first_name: "Charles",
+charles = User.new(first_name: "Charles",
                        last_name: "Darwin",
                        email: "cd@example.com",
                        password: "123456", 
                        password_confirmation: "123456")
+charles.skip_confirmation!
+charles.save!
 
-tony = User.create!(first_name: "Tony",
+tony = User.new(first_name: "Tony",
                     last_name: "Stark",
                     email: "ts@example.com",
                     password: "123456", 
                     password_confirmation: "123456")
+tony.skip_confirmation!
+tony.save!
 
 #Posts
 post_1 = Post.create!(body: "Hello World!", user_id: sherlock.id)

@@ -19,7 +19,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: %i[facebook]
+         :omniauthable, :confirmable, omniauth_providers: %i[facebook]
 
   def full_name
     "#{self.first_name} #{self.last_name}"

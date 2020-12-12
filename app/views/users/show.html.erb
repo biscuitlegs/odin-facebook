@@ -1,3 +1,41 @@
+<div class="modal" id="delete-account-modal">
+    <div class="modal-background" id="delete-account-modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head has-background-danger">
+            <strong class="modal-card-title has-text-centered has-text-white">Delete Account</strong>
+            <button class="delete" id="delete-account-modal-close" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+        <p class="mb-4">
+        Deleting your account means that not only will you be <span class="has-text-danger">unable to sign in with your current details</span>, but also your:
+        </p>
+        <ul>
+            <li>Posts</li>
+            <li>Comments</li>
+            <li>Friends List</li>
+            <li>and Likes</li>
+        </ul>
+        <p class="mt-4">
+        will be <span class="has-text-danger">permanently deleted</span>.
+        </p>
+
+        <hr>
+        <strong>Are you sure you want to proceed and delete your account?
+            <span class="has-text-danger bold">This action is irreversable!</span>
+        </strong>
+        </section>
+        <footer class="modal-card-foot">
+            <a href="<%= user_registration_path %>" class="button is-danger" data-method="delete" data-confirm="Are you sure you want to delete your account? This is your final warning!">
+                <span class="icon is-small">
+                    <i class="fas fa-trash-alt"></i>
+                </span>
+                <span>Delete my Account</span>
+            </a>
+        </footer>
+    </div>
+</div>
+
+
 <section>
     <div class="columns">
         <div class="column mt-6">
@@ -75,6 +113,20 @@
                         <p>Whenever you update your Facebook profile, any changes will automatically carry over to your profile here.</p>
                     </div>
                 <% end %>
+
+                <% if @user.id == current_user.id %>
+                    <div class="columns is-mobile is-centered">
+                        <div class="column is-narrow">
+                            <a class="button is-danger is-small" id="delete-account-modal-open-button">
+                                <span class="icon is-small">
+                                    <i class="fas fa-trash-alt"></i>
+                                </span>
+                                <span>Delete my Account</span>
+                            </a>
+                        </div>
+                    </div>
+                <% end %>
+
             </div>
         </div>
 
@@ -97,4 +149,4 @@
     </div> 
 </section>
 
-
+<%= javascript_pack_tag 'delete_account' %>
