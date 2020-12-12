@@ -8,6 +8,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         @user.first_name = request.env["omniauth.auth"].info.name.split(" ").first
         @user.last_name = request.env["omniauth.auth"].info.name.split(" ").last
         @user.email = request.env["omniauth.auth"].info.email
+        @user.facebook_profile_picture = request.env["omniauth.auth"].info.picture
         
         @user.save
       end
