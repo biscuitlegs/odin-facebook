@@ -88,6 +88,17 @@
                         <div class="media-content">
                             <div class="content">
                                 <p>
+                                    <% if comment.creator.id == current_user.id %>
+                                        <!-- No Icon -->
+                                    <% elsif current_user.id != comment.creator.id && current_user.friends.include?(comment.creator) %>
+                                        <span class="icon"><i class="fas fa-user-friends"></i></span>
+                                    <% elsif current_user.sent_friend_requests.where(receiving_user_id: comment.creator.id).any? %>
+                                        <span class="icon"><i class="fas fa-user-clock"></i></span>
+                                    <% else %>
+                                        <a href="<%= friend_requests_path(friend_request: { receiving_user_id: comment.creator.id, sending_user_id: current_user.id }) %>" data-method="post">
+                                            <span class="icon"><i class="fas fa-user-plus"></i></span>
+                                        </a>
+                                    <% end %>
                                     <a href="<%= user_path(comment.creator) %>">
                                         <strong><%= comment.creator.full_name %></strong>
                                     </a>
