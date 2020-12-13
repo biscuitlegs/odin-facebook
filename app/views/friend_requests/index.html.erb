@@ -1,42 +1,73 @@
 <section>
-    <div class="box mx-6 my-6">
-        <p class="title has-text-centered">Received Friend Requests</p>
-        <% @friend_requests.each do |request| %>
-            <% sending_user = User.find(request.sending_user_id) %>
+    <div class="columns">
+        <div class="column">
+            <div class="box mx-6 my-6">
+                <p class="title has-text-centered">Received Friend Requests</p>
+                <p class="notification">Want to make new friends? <a href="<%= posts_path %>" class="has-text-link">Explore some posts</a> and leave a comment to join the conversation.</p>
+                <% @received_friend_requests.each do |request| %>
+                    <% sending_user = User.find(request.sending_user_id) %>
+                        <div class="columns is-mobile is-centered">
+                            <div class="column is-narrow">
+                                <a href="<%= user_path(sending_user) %>">
+                                    <p class="image is-64x64">
+                                        <%= image_tag sending_user.primary_profile_picture, class: "is-rounded" %>
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
 
-            <div class="level">
-                <div class="level-left">
-                    <div class="level-item has-text-centered">
-                        <a href="<%= user_path(sending_user) %>">
-                            <p class="image is-64x64">
-                                <%= image_tag sending_user.primary_profile_picture, class: "is-rounded" %>
-                            </p>
-                        </a>
-                    </div>
-                    <div class="level-item has-text-centered">
-                        <a href="<%= user_path(sending_user) %>">
-                            <p class="is-size-5">
-                                <%= sending_user.full_name %>
-                            </p>
-                        </a>
-                    </div>
-                </div>
-                <div class="level-right">
-                    <div class="level-item has-text-centered">
-                        <a href="<%= friendships_path(friendship: { friend_one_id: request.sending_user_id, friend_two_id: request.receiving_user_id }, friend_request_id: request.id) %>" class="button is-primary" data-method="post">
-                            <span class="icon is-large"><i class="fas fa-check-circle fa-lg"></i></span>
-                            <span>Accept</span>
-                        </a>
-                    </div>
-                    <div class="level-item has-text-centered">
-                        <a href="<%= friend_request_path(request) %>" class="button is-danger" data-method="delete">
-                            <span class="icon is-large"><i class="fas fa-times-circle fa-lg"></i></span>
-                            <span>Decline</span>
-                        </a>
-                    </div>
-                </div>
+                        <div class="has-text-centered mb-3">
+                            <a href="<%= user_path(sending_user) %>">
+                                <p class="is-size-5">
+                                    <%= sending_user.full_name %>
+                                </p>
+                            </a>
+                        </div>
+                    
+                        <div class="has-text-centered">
+                            <a href="<%= friendships_path(friendship: { friend_one_id: request.sending_user_id, friend_two_id: request.receiving_user_id }, friend_request_id: request.id) %>" class="button is-primary" data-method="post">
+                                <span class="icon is-large"><i class="fas fa-check-circle fa-lg"></i></span>
+                                <span>Accept</span>
+                            </a>
+                        </div>
+                        <div class="has-text-centered">
+                            <a href="<%= friend_request_path(request) %>" class="button is-danger" data-method="delete">
+                                <span class="icon is-large"><i class="fas fa-times-circle fa-lg"></i></span>
+                                <span>Decline</span>
+                            </a>
+                        </div>
+                    <hr>
+                <% end %>
             </div>
-            <hr>
-        <% end %>
+        </div>
+        <div class="column">
+            <div class="box mx-6 my-6">
+                <p class="title has-text-centered">Sent Friend Requests</p>
+                <p class="notification">Any friend requests you send will appear here. If they are accepted, you and the receiver will be added to each others friends list.</p>
+
+                <% @sent_friend_requests.each do |request| %>
+                    <% receiving_user = User.find(request.receiving_user_id) %>
+
+                    <div class="columns is-mobile is-centered">
+                        <div class="column is-narrow">
+                            <a href="<%= user_path(receiving_user) %>">
+                                <p class="image is-64x64">
+                                    <%= image_tag receiving_user.primary_profile_picture, class: "is-rounded" %>
+                                 </p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="has-text-centered mb-3">
+                        <a href="<%= user_path(receiving_user) %>">
+                            <p class="is-size-5">
+                                <%= receiving_user.full_name %>
+                            </p>
+                        </a>
+                    </div>
+                    <hr>
+                <% end %>
+            </div>
+        </div>
     </div>
 </section>

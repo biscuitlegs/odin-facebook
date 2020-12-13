@@ -75,21 +75,9 @@
                 <!-- For Profile Picture Centering -->
                 <div class="columns is-mobile is-centered">
                     <div class="column is-narrow">
-                        <div class="container">
-                            <% if @user.facebook_profile_picture %>
-                                <figure class="image is-128x128">
-                                    <img src="<%= @user.facebook_profile_picture %>" alt="profile picture" class="is-rounded">
-                                </figure>
-                            <% elsif @user.profile_picture.attached? %>
-                                <figure class="image is-128x128">
-                                    <%= image_tag(@user.profile_picture.variant(resize_to_fill: [128, 128]), class: "is-rounded") %>
-                                </figure>
-                            <% else %>
-                                <figure class="image is-128x128">
-                                    <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
-                                </figure>
-                            <% end %>
-                        </div>
+                        <figure class="image is-128x128">
+                            <%= image_tag @user.primary_profile_picture, class: "is-rounded" %>
+                        </figure>
                     </div>
                 </div>
 

@@ -5,8 +5,9 @@ class FriendRequestsController < ApplicationController
     before_action :ensure_current_user_receiving_friend_request, only: :destroy
 
     def index
-        @friend_requests = FriendRequest.where(receiving_user_id: current_user.id)
-        @sending_users = @friend_requests.map { |request| User.find(request.sending_user_id) }
+        @received_friend_requests = FriendRequest.where(receiving_user_id: current_user.id)
+        @sent_friend_requests = FriendRequest.where(sending_user_id: current_user.id)
+        @sending_users = @received_friend_requests.map { |request| User.find(request.sending_user_id) }
     end
 
     def create
