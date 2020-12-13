@@ -64,9 +64,9 @@ class User < ApplicationRecord
     if self.facebook_profile_picture
       self.facebook_profile_picture
     elsif self.profile_picture.attached?
-      self.profile_picture
+      self.profile_picture.variant(resize_to_fill: [128, 128])
     else
-      "https://bulma.io/images/placeholders/64x64.png"
+      "https://bulma.io/images/placeholders/128x128.png"
     end
   end
 

@@ -7,47 +7,51 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 #Users
-sherlock = User.new(first_name: "Sherlock",
-                        last_name: "Holmes",
-                        email: "sh@example.com",
+david = User.new(first_name: "David",
+                        last_name: "Davidson",
+                        email: "dd@example.com",
                         password: "123456", 
                         password_confirmation: "123456")
-sherlock.skip_confirmation!
-sherlock.save!
+david.skip_confirmation!
+david.save!
 
-charles = User.new(first_name: "Charles",
-                       last_name: "Darwin",
-                       email: "cd@example.com",
+emma = User.new(first_name: "Emma",
+                       last_name: "Emmason",
+                       email: "ee@example.com",
                        password: "123456", 
                        password_confirmation: "123456")
-charles.skip_confirmation!
-charles.save!
+emma.skip_confirmation!
+emma.save!
 
-tony = User.new(first_name: "Tony",
-                    last_name: "Stark",
-                    email: "ts@example.com",
+amelia = User.new(first_name: "Amelia",
+                    last_name: "Ameliason",
+                    email: "aa@example.com",
                     password: "123456", 
                     password_confirmation: "123456")
-tony.skip_confirmation!
-tony.save!
+amelia.skip_confirmation!
+amelia.save!
 
 #Posts
-post_1 = Post.create!(body: "Hello World!", user_id: sherlock.id)
-post_2 = Post.create!(body: "FooBar.", user_id: charles.id)
-post_3 = Post.create!(body: "こんにちは", user_id: tony.id)
+post_1 = Post.create!(body: "Hello World!", user_id: david.id)
+post_2 = Post.create!(body: "Ut vitae arcu dapibus, blandit elit id, sollicitudin risus. Aenean accumsan ultricies ex sit amet auctor. Aenean scelerisque, lectus ut tincidunt tincidunt, ex dui vestibulum enim, id ullamcorper risus sapien vitae massa.", user_id: amelia.id)
+post_3 = Post.create!(body: "Etiam placerat sem vitae est iaculis, vitae gravida erat pretium. Nunc bibendum, magna vel rhoncus elementum, nibh velit interdum arcu, sed vulputate ipsum mauris non dui.", user_id: emma.id)
+
+#ActiveStorage Profile Picture
+david.profile_picture.attach(io: File.open('db/seed_images/david.jpg'), filename: 'david.jpg', content_type: 'image/jpg')
+emma.profile_picture.attach(io: File.open('db/seed_images/emma.jpg'), filename: 'emma.jpg', content_type: 'image/jpg')
 
 #Comments
-Comment.create!(body: "Great Post!", post_id: post_2.id, user_id: sherlock.id)
-Comment.create!(body: "Holy Cow!", post_id: post_3.id, user_id: charles.id)
+Comment.create!(body: "Great Post!", post_id: post_2.id, user_id: david.id)
+Comment.create!(body: "Etiam ultrices venenatis semper. Suspendisse mauris eros, blandit vitae ligula eleifend, rutrum pretium risus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.", post_id: post_3.id, user_id: amelia.id)
 
 #Likes
-Like.create!(user_id: sherlock.id, post_id: post_3.id)
-Like.create!(user_id: tony.id, post_id: post_1.id)
-Like.create!(user_id: charles.id, post_id: post_1.id)
+Like.create!(user_id: david.id, post_id: post_3.id)
+Like.create!(user_id: emma.id, post_id: post_1.id)
+Like.create!(user_id: amelia.id, post_id: post_1.id)
 
 #Friendships
-Friendship.create!(friend_one_id: sherlock.id, friend_two_id: charles.id)
-Friendship.create!(friend_one_id: charles.id, friend_two_id: tony.id)
+Friendship.create!(friend_one_id: david.id, friend_two_id: amelia.id)
+Friendship.create!(friend_one_id: amelia.id, friend_two_id: emma.id)
 
 #Friend Requests
-FriendRequest.create!(sending_user_id: sherlock.id, receiving_user_id: tony.id)
+FriendRequest.create!(sending_user_id: david.id, receiving_user_id: emma.id)

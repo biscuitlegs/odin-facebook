@@ -6,6 +6,7 @@
 <section class="box mx-6 mb-3">
   <% if params[:my_feed] %>
     <p class="title has-text-centered">My Feed</p>
+    <p class="notification">Only posts created by you and your friends will be displayed in your feed. If you want to see all posts, check out the <a href="<%= posts_path %>" class="has-text-link">explore page</a>.</p>
   <% else %>
     <p class="title has-text-centered">Explore</p>
   <% end %>
