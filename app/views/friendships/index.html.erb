@@ -1,33 +1,38 @@
 <section>
-    <div class="box mx-6 my-6">
-        <p class="title has-text-centered">Your Friends</p>
+    <div class="columns is-centered">
+        <div class="column is-two-thirds">
+            <div class="box mx-6 my-6">
+                <p class="title has-text-centered">Your Friends</p>
+                <p class="notification">Looking for some friends? Check out some <a href="<%= posts_path %>" class="has-text-link">recent posts</a> or jump straight to the <a href="<%= users_path %>" class="has-text-link">users page</a> to start your search!</p>
 
-        <% @friends_with_friendships.each do |friend, friendship| %>
-            <div class="level">
-                <div class="level-left">
-                    <div class="level-item has-text-centered">
-                        <a href="<%= user_path(friend) %>">
-                            <p class="image is-64x64">
-                                <%= image_tag friend.primary_profile_picture, class: "is-rounded" %>
-                            </p>
-                        </a>
+                <% @friends_with_friendships.each do |friend, friendship| %>
+                    <div class="level">
+                        <div class="level-left">
+                            <div class="level-item has-text-centered">
+                                <a href="<%= user_path(friend) %>">
+                                    <p class="image is-64x64">
+                                        <%= image_tag friend.primary_profile_picture, class: "is-rounded" %>
+                                    </p>
+                                </a>
+                            </div>
+                            <div class="level-item has-text-centered">
+                                <a href="<%= user_path(friend) %>">
+                                    <p class="is-size-5">
+                                        <%= friend.full_name %>
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="level-right has-text-centered">
+                            <a href="<%= friendship_path(friendship) %>" data-method="delete" data-confirm="Are you sure you want to remove this user from your friends list?" class="button is-danger">
+                                <span class="icon"><i class="fas fa-user-times"></i></span>
+                                <span>Unfriend</span>
+                            </a>
+                        </div>
                     </div>
-                    <div class="level-item has-text-centered">
-                        <a href="<%= user_path(friend) %>">
-                            <p class="is-size-5">
-                                <%= friend.full_name %>
-                            </p>
-                        </a>
-                    </div>
-                </div>
-                <div class="level-right has-text-centered">
-                    <a href="<%= friendship_path(friendship) %>" data-method="delete" data-confirm="Are you sure you want to remove this user from your friends list?" class="button is-danger">
-                        <span class="icon"><i class="fas fa-user-times"></i></span>
-                        <span>Unfriend</span>
-                    </a>
-                </div>
+                    <hr>
+                <% end %>
             </div>
-            <hr>
-        <% end %>
+        </div>
     </div>
 </section>
