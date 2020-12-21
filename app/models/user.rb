@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-
   has_one_attached :profile_picture, dependent: :destroy
 
   has_many :posts, dependent: :destroy
@@ -10,10 +9,14 @@ class User < ApplicationRecord
 
   has_many :friendships, foreign_key: "friend_one_id", dependent: :destroy
   has_many :occurrences_as_friend, class_name: "Friendship", foreign_key: "friend_two_id"
-  
 
   has_many :received_friend_requests, class_name: "FriendRequest", foreign_key: "receiving_user_id", dependent: :destroy
   has_many :sent_friend_requests, class_name: "FriendRequest", foreign_key: "sending_user_id", dependent: :destroy
+
+  validates :first_name, presence: true, length: { maximum: 15 }, allow_blank: false
+  validates :last_name, presence: true, length: { maximum: 15 }, allow_blank: false
+  validates :email, presence: true, uniqueness: true, length: { maximum: 30 }, allow_blank: false
+  validates :password, presence: true, length: { minimum: 6, maximum: 12 }, format: { with: /.*\d.*/ }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -69,5 +72,4 @@ class User < ApplicationRecord
       "https://bulma.io/images/placeholders/128x128.png"
     end
   end
-
 end
