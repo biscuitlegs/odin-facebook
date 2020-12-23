@@ -5,8 +5,8 @@
 # below each fixture, per the syntax in the comments below
 hello_world:
   body: Hello, world!
-  user_id: 1
+  user: mark
 
-#
-#two: {}
-# column: value
+hey_guys:
+  body: Hey guys!
+  user: emma

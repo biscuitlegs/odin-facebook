@@ -8,8 +8,19 @@ david:
   first_name: David
   last_name: Davidson
   email: david@example.com
+  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+  confirmed_at: <%= Time.now %>
 
 emma: 
   first_name: Emma
   last_name: Emmason
   email: emma@example.com
+  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+  confirmed_at: <%= Time.now %>
+
+mark:
+  first_name: Mark
+  last_name: Markson
+  email: mark@example.com
+  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+  confirmed_at: <%= Time.now %>

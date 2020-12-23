@@ -16,7 +16,7 @@ class User < ApplicationRecord
   validates :first_name, presence: true, length: { maximum: 15 }, allow_blank: false
   validates :last_name, presence: true, length: { maximum: 15 }, allow_blank: false
   validates :email, presence: true, uniqueness: true, length: { maximum: 30 }, allow_blank: false
-  validates :password, presence: true, length: { minimum: 6, maximum: 12 }, format: { with: /.*\d.*/ }
+  validates :password, presence: true, length: { minimum: 6, maximum: 12 }, format: { with: /.*\d.*/ }, unless: :from_omniauth?
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -71,5 +71,9 @@ class User < ApplicationRecord
     else
       "https://bulma.io/images/placeholders/128x128.png"
     end
+  end
+
+  def from_omniauth?
+    provider && uid
   end
 end
