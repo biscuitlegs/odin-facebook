@@ -6,8 +6,10 @@
 #
 great_post:
   body: Great post!
-  user_id: 1
-  post_id: 1
-#
-#two: {}
-# column: value
+  user: mark
+  post: hey_guys
+
+incredible:
+  body: "Incredible!"
+  user: emma
+  post: hello_world
