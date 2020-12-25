@@ -44,18 +44,16 @@
                         <span><%= post.comments.count %></span>
                     </a>
                 
-                    <% if current_user.id != post.user_id %>
-                        <% if current_user.liked_posts.any? { |liked_post| liked_post.id == post.id } %>
-                            <a href="<%= like_path(Like.find_by(user_id: current_user.id, post_id: post.id)) %>" data-method="delete" class="level-item">
-                            <span class="icon"><i class="fas fa-heart is-like"></i></span>
-                            <span class="is-like"><%= post.likes.count %></span>
-                            </a>
-                        <% else %>
-                            <a href="<%= likes_path(like: { user_id: current_user.id, post_id: post.id }) %>" data-method="post" class="level-item is-like">
-                            <span class="icon"><i class="far fa-heart"></i></span>
-                            <span class="is-like"><%= post.likes.count %></span>
-                            </a>
-                        <% end %>
+                    <% if current_user.liked_posts.any? { |liked_post| liked_post.id == post.id } %>
+                        <a href="<%= like_path(Like.find_by(user_id: current_user.id, post_id: post.id)) %>" data-method="delete" class="level-item">
+                        <span class="icon"><i class="fas fa-heart is-like"></i></span>
+                        <span class="is-like"><%= post.likes.count %></span>
+                        </a>
+                    <% else %>
+                        <a href="<%= likes_path(like: { user_id: current_user.id, post_id: post.id }) %>" data-method="post" class="level-item is-like">
+                        <span class="icon"><i class="far fa-heart"></i></span>
+                        <span class="is-like"><%= post.likes.count %></span>
+                        </a>
                     <% end %>
                     
                     <% if user_signed_in? && current_user.id == post.user_id %>
