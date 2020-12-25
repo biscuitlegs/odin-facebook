@@ -1,7 +1,7 @@
 class FriendshipsController < ApplicationController
     before_action :new_friendship, only: :create
     before_action :set_friendship, only: :destroy
-    before_action :ensure_corresponding_friend_request, only: [:create, :destroy]
+    before_action :ensure_corresponding_friend_request, only: :create
     
     def index
         @friends = current_user.friends
@@ -27,9 +27,12 @@ class FriendshipsController < ApplicationController
     end
 
     def destroy
-        @friendship.destroy
-
-        redirect_to friendships_path, notice: "Successfully removed user from your friends list."
+        if !current_user_in_friendship?(@friendship)
+            redirect_to friendships_path, alert: "You cannot destroy the friendships of other users!"
+        else
+            @friendship.destroy
+            redirect_to friendships_path, notice: "Successfully removed user from your friends list."
+        end
     end
 
 
@@ -55,6 +58,11 @@ class FriendshipsController < ApplicationController
         end
 
         false
+    end
+
+    def current_user_in_friendship?(friendship)
+        current_user.id == friendship.friend_one_id ||
+        current_user.id == friendship.friend_two_id
     end
 
     def set_friendship
