@@ -1,1 +1,4 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+david_to_emma:
+  sending_user: david
+  receiving_user: emma
