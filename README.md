@@ -17,4 +17,3 @@
 ## Todo
 * Emails are sent from developer email -- Integrate mail service.
 * Uploaded avatars do not persist on Heroku -- Integrate storage solution.
-* Add tests.

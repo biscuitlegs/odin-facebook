@@ -71,4 +71,6 @@ Rails.application.configure do
     authentication:       'plain',
     enable_starttls_auto: true 
   }
+
+  config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
 end

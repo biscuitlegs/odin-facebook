@@ -1,5 +1,6 @@
 require "application_system_test_case"
 
+=begin
 class PostsTest < ApplicationSystemTestCase
   setup do
     @post = posts(:one)
@@ -39,3 +40,4 @@ class PostsTest < ApplicationSystemTestCase
     assert_text "Post was successfully destroyed"
   end
 end
+=end
