@@ -33,4 +33,12 @@ class FriendshipTest < ActiveSupport::TestCase
     friendship.friend_two_id = 0
     assert_not friendship.save, "Friendship saved with an invalid friend two."
   end
+
+  test "calling #friend_one on friendship returns the friend_one of a friendship" do
+    assert friendships(:mark_and_david).friend_one == users(:mark)
+  end
+
+  test "calling #friend_two on friendship returns the friend_two of a friendship" do
+    assert friendships(:mark_and_david).friend_two == users(:david)
+  end
 end

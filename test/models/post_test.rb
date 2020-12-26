@@ -47,4 +47,16 @@ class PostTest < ActiveSupport::TestCase
     post.body = "Hello!"
     assert post.save, "Post did not save when body length is valid."
   end
+
+  test "calling #user on post should return that post's user" do
+    assert posts(:hello_world).user == users(:mark)
+  end
+
+  test "calling #comments on post should return that post's comments" do
+    assert_includes posts(:hello_world).comments, comments(:incredible)
+  end
+
+  test "calling #likes_from_users on post should return that post's likes" do
+    assert_includes posts(:hello_world).likes_from_users, users(:emma)
+  end
 end

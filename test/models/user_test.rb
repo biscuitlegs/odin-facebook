@@ -139,4 +139,28 @@ class UserTest < ActiveSupport::TestCase
     user.password = "password1"
     assert user.save, "Did not save user when first name, last name, email and password are valid."
   end
+
+  test "calling #posts on user should return that user's posts" do
+    assert_includes users(:mark).posts, posts(:hello_world)
+  end
+
+  test "calling #comments on user should return that user's comments" do
+    assert_includes users(:mark).comments, comments(:great_post)
+  end
+
+  test "calling #liked_posts on user should return that user's liked posts" do
+    assert_includes users(:emma).liked_posts, posts(:hello_world)
+  end
+
+  test "calling #friends on user should return that user's friends" do
+    assert_includes users(:emma).friends, users(:david)
+  end
+
+  test "calling #received_friend_requests on user should return that user's received friend requests" do
+    assert_includes users(:emma).received_friend_requests, friend_requests(:david_to_emma)
+  end
+
+  test "calling #sent_friend_requests on user should return that user's sent friend requests" do
+    assert_includes users(:david).sent_friend_requests, friend_requests(:david_to_emma)
+  end
 end

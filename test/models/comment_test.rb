@@ -69,4 +69,12 @@ class CommentTest < ActiveSupport::TestCase
     comment.body = "a" * 15
     assert comment.save, "Comment did not save with a valid body length."
   end
+
+  test "calling #user on a comment returns the comment's user" do
+    assert comments(:great_post).user == users(:mark)
+  end
+
+  test "calling #post on a comment returns the comment's post" do
+    assert comments(:great_post).post == posts(:hey_guys)
+  end
 end

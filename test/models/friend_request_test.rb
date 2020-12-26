@@ -41,8 +41,16 @@ class FriendRequestTest < ActiveSupport::TestCase
 
   test "should save if sending and receiving users are a unique pair" do
     friend_request = FriendRequest.new
-    friend_request.sending_user = users(:david)
+    friend_request.sending_user = users(:mark)
     friend_request.receiving_user = users(:emma)
     assert friend_request.save, "Friend Request saved with a non-unique user pair."
+  end
+
+  test "calling #sending_user on a friend request returns the sending user" do
+    assert friend_requests(:david_to_emma).sending_user == users(:david)
+  end
+
+  test "calling #receiving_user on a friend request returns the receiving user" do
+    assert friend_requests(:david_to_emma).receiving_user == users(:emma)
   end
 end

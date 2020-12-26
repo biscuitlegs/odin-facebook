@@ -33,4 +33,12 @@ class LikeTest < ActiveSupport::TestCase
     like.post_id = 0
     assert_not like.save, "Like saved with a non-existant post."
   end
+
+  test "calling #user on like returns that like's user" do
+    assert likes(:david_like_hello_world).user == users(:david)
+  end
+
+  test "calling #post on like returns that like's post" do
+    assert likes(:david_like_hello_world).post == posts(:hello_world)
+  end
 end
