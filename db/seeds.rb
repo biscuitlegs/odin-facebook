@@ -33,8 +33,8 @@ amelia.save!
 
 #Posts
 post_1 = Post.create!(body: "Hello World!", user_id: david.id)
-post_2 = Post.create!(body: "Ut vitae arcu dapibus, blandit elit id, sollicitudin risus. Aenean accumsan ultricies ex sit amet auctor. Aenean scelerisque, lectus ut tincidunt tincidunt, ex dui vestibulum enim, id ullamcorper risus sapien vitae massa.", user_id: amelia.id)
-post_3 = Post.create!(body: "Etiam placerat sem vitae est iaculis, vitae gravida erat pretium. Nunc bibendum, magna vel rhoncus elementum, nibh velit interdum arcu, sed vulputate ipsum mauris non dui.", user_id: emma.id)
+post_2 = Post.create!(body: "Ut vitae arcu dapibus, blandit elit id, sollicitudin risus.", user_id: amelia.id)
+post_3 = Post.create!(body: "Nunc bibendum, magna vel rhoncus elementum, nibh velit interdum arcu, sed vulputate ipsum mauris non dui.", user_id: emma.id)
 
 #ActiveStorage Profile Picture
 david.profile_picture.attach(io: File.open('db/seed_images/david.jpg'), filename: 'david.jpg', content_type: 'image/jpg')
@@ -42,7 +42,7 @@ emma.profile_picture.attach(io: File.open('db/seed_images/emma.jpg'), filename: 
 
 #Comments
 Comment.create!(body: "Great Post!", post_id: post_2.id, user_id: david.id)
-Comment.create!(body: "Etiam ultrices venenatis semper. Suspendisse mauris eros, blandit vitae ligula eleifend, rutrum pretium risus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.", post_id: post_3.id, user_id: amelia.id)
+Comment.create!(body: "Etiam ultrices venenatis semper.", post_id: post_3.id, user_id: amelia.id)
 
 #Likes
 Like.create!(user_id: david.id, post_id: post_3.id)
