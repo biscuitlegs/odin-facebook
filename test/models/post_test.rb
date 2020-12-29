@@ -34,11 +34,11 @@ class PostTest < ActiveSupport::TestCase
     assert_not post.save, "Post saved with when body has less than 5 characters."
   end
 
-  test "should not save if body has more than 100 characters" do
+  test "should not save if body has more than 250 characters" do
     post = Post.new
     post.user = users(:david)
-    post.body = "a" * 101
-    assert_not post.save, "Post saved with when body has more than 100 characters."
+    post.body = "a" * 251
+    assert_not post.save, "Post saved with when body has more than 250 characters."
   end
 
   test "should save with a valid body length" do
@@ -46,6 +46,14 @@ class PostTest < ActiveSupport::TestCase
     post.user = users(:david)
     post.body = "Hello!"
     assert post.save, "Post did not save when body length is valid."
+  end
+
+  test "should save with an image attached" do
+    post = Post.new
+    post.user = users(:david)
+    post.body = "Hello!"
+    post.image.attach(io: File.open('db/seed_images/david.jpg'), filename: 'david.jpg', content_type: 'image/jpg')
+    assert post.save, "Post did not save when an image is attached."
   end
 
   test "calling #user on post should return that post's user" do

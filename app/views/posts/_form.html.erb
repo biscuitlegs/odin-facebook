@@ -16,8 +16,27 @@
       <%= form.text_area :body, class: "textarea", placeholder: "Exciting new posts are made here..." %>
     </div>
 
+    <div class="field">
+        <div class="file">
+            <label class="file-label">
+                <%= form.file_field :image, class: "file-input", accept: "image/png, image/jpg, image/jpeg" %>
+                <span class="file-cta">
+                    <span class="file-icon">
+                        <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">
+                        Choose an image...
+                    </span>
+                </span>
+                <span class="file-name">
+                    No file selected.
+                </span>
+            </label>
+        </div>
+    </div>
+
     <div class="actions mt-5">
-      <%= form.submit class: "button is-primary" %>
+      <%= form.submit class: "button is-primary mb-4" %>
     </div>
   <% end %>
 </div>

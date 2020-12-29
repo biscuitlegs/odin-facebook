@@ -1,7 +1,9 @@
-const fileInput = document.querySelector('.file-input');
-const filenameDisplay = document.querySelector('.file-name');
+const fileInput = document.querySelectorAll('.file-input');
+const filenameDisplay = document.querySelectorAll('.file-name');
 
-fileInput.addEventListener('change', () => {
-    let uploadedFilename = fileInput.files[0].name;
-    filenameDisplay.textContent = uploadedFilename;
-})
+for (let i = 0; i < fileInput.length; i++) {
+    fileInput[i].addEventListener('change', () => {
+        let uploadedFilename = fileInput[i].files[0].name;
+        filenameDisplay[i].textContent = uploadedFilename;
+    })
+}

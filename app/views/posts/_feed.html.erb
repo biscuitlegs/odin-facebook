@@ -34,6 +34,14 @@
                 <% end %>
 
                 <p class="post-body"><%= post.body %></p>
+
+                <% if post.image.attached? %>
+                    <div class="columns is-mobile is-centered">
+                        <div class="column">
+                            <%= image_tag post.image.variant(resize_to_limit: [800, 480]) %>
+                        </div>
+                    </div>
+                <% end %>
                 
             </div>
             <nav class="level is-mobile">

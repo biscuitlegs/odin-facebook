@@ -7,18 +7,16 @@
         </header>
         <section class="modal-card-body">
         <p class="mb-4">
-        Deleting your account means that not only will you be <span class="has-text-danger">unable to sign in with your current details</span>, but also your:
+        Deleting your account means that not only will you be <span class="has-text-danger">unable to sign in with your current details</span>, but the following content linked to your account will also be <span class="has-text-danger">permanently deleted</span>:
         </p>
         <ul>
-            <li>Posts</li>
-            <li>Comments</li>
-            <li>Friends List</li>
-            <li>and Likes</li>
+            <li><strong>Posts</strong></li>
+            <li><strong>Comments</strong></li>
+            <li><strong>Friends List</strong></li>
+            <li><strong>Likes</strong></li>
+            <li><strong>Images</strong></li>
         </ul>
-        <p class="mt-4">
-        will be <span class="has-text-danger">permanently deleted</span>.
-        </p>
-
+        
         <hr>
         <strong>Are you sure you want to proceed and delete your account?
             <span class="has-text-danger bold">This action is irreversable!</span>
@@ -138,6 +136,11 @@
                     <% @user.posts.each do |post| %>
                         <div class="box">
                             <p class="subtitle"><%= post.body %></p>
+                            
+                            <% if post.image.attached? %>
+                                <%= image_tag post.image %>
+                            <% end %>
+
                             <strong><%= distance_of_time_in_words(Time.now, post.created_at) %> ago.</strong>
                         </div>
                     <% end %>

@@ -5,5 +5,7 @@ class Post < ApplicationRecord
     has_many :likes, dependent: :destroy
     has_many :likes_from_users, through: :likes, source: :user
 
-    validates :body, presence: true, length: { minimum: 5, maximum: 150 }
+    has_one_attached :image, dependent: :destroy
+
+    validates :body, presence: true, length: { minimum: 5, maximum: 250 }
 end

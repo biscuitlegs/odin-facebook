@@ -54,12 +54,12 @@ class CommentTest < ActiveSupport::TestCase
     assert_not comment.save, "Comment saved with less than 5 characters."
   end
 
-  test "should not save if body has more than 50 characters" do
+  test "should not save if body has more than 150 characters" do
     comment = Comment.new
     comment.user = users(:david)
     comment.post = posts(:hello_world)
-    comment.body = "a" * 51
-    assert_not comment.save, "Comment saved with more than 50 characters."
+    comment.body = "a" * 151
+    assert_not comment.save, "Comment saved with more than 150 characters."
   end
 
   test "should save with a valid body length" do
