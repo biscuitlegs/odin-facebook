@@ -43,7 +43,7 @@
                 <% if @user.friends.none? %>
                     <p>Looks like you don't have any friends yet...</p>
                     <br>
-                    <a href="<%= users_path %>" class="button is-link">Let's fix that!</a>
+                    <a href="<%= users_path %>" class="button is-link">Find some friends!</a>
                 <% end %>
 
                 <% @user.friends.each do |friend| %>
@@ -134,15 +134,14 @@
                     <% end %>
 
                     <% @user.posts.each do |post| %>
-                        <div class="box">
-                            <p class="subtitle"><%= post.body %></p>
-                            
-                            <% if post.image.attached? %>
-                                <%= image_tag post.image %>
-                            <% end %>
+                        <p><%= post.body %></p>
+                        
+                        <% if post.image.attached? %>
+                            <%= image_tag post.image %>
+                        <% end %>
 
-                            <strong><%= distance_of_time_in_words(Time.now, post.created_at) %> ago.</strong>
-                        </div>
+                        <strong><%= distance_of_time_in_words(Time.now, post.created_at) %> ago.</strong>
+                        <hr>
                     <% end %>
 
                 </div>
