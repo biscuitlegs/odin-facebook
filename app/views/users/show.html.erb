@@ -47,7 +47,7 @@
                 <% end %>
 
                 <% @user.friends.each do |friend| %>
-                    <a href="<%= user_path(friend.id) %>">
+                    <a href="<%= profile_path(friend.username) %>">
                         <div class="columns is-mobile is-centered">
                             <div class="column is-narrow">
                                 <figure class="image is-64x64 level-item">
@@ -56,7 +56,7 @@
                             </div>
                         </div>
 
-                        <p class="mb-4"><%= friend.full_name %></p>
+                        <p class="mb-4"><strong><%= friend.full_name %></strong> @<%= friend.username %></p>
                     </a>
                 <% end %>
             </div>
@@ -80,7 +80,7 @@
                 </div>
 
                 <p class="has-text-centered is-size-5"><strong><%= @user.full_name %></strong></p>
-                <p class="has-text-centered"><%= @user.email %></p>
+                <p class="has-text-centered"><%= @user.username %></p>
 
                 <% if @user.provider == "facebook" %>
                     <div class="columns is-mobile is-centered">

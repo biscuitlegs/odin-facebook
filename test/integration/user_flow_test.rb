@@ -7,6 +7,7 @@ class UserFlowTest < ActionDispatch::IntegrationTest
     post "/users",
       params: { 
         user: {
+          username: "kevin260",
           first_name: "Kevin", 
           last_name: "Kevinson", 
           email: "kevin@example.com", 

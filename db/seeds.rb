@@ -1,41 +1,46 @@
 #Users
-david = User.new(first_name: "David",
-                        last_name: "Jones",
-                        email: "david@example.com",
-                        password: "password1", 
-                        password_confirmation: "password1")
+david = User.new(username: "davidjones2",
+                 first_name: "David",
+                 last_name: "Jones",
+                 email: "david@example.com",
+                 password: "password1", 
+                 password_confirmation: "password1")
 david.skip_confirmation!
 david.save!
 
-emma = User.new(first_name: "Emma",
-                       last_name: "Doe",
-                       email: "emma@example.com",
-                       password: "password1", 
-                       password_confirmation: "password1")
+emma = User.new(username: "emmadoe6551",
+                first_name: "Emma",
+                last_name: "Doe",
+                email: "emma@example.com",
+                password: "password1", 
+                password_confirmation: "password1")
 emma.skip_confirmation!
 emma.save!
 
-amelia = User.new(first_name: "Amelia",
-                    last_name: "Wright",
-                    email: "amelia@example.com",
-                    password: "password1", 
-                    password_confirmation: "password1")
+amelia = User.new(username: "ameliawright541",
+                  first_name: "Amelia",
+                  last_name: "Wright",
+                  email: "amelia@example.com",
+                  password: "password1", 
+                  password_confirmation: "password1")
 amelia.skip_confirmation!
 amelia.save!
 
-mark = User.new(first_name: "Mark",
-    last_name: "Wright",
-    email: "mark@example.com",
-    password: "password1", 
-    password_confirmation: "password1")
+mark = User.new(username: "markwright98",
+                first_name: "Mark",
+                last_name: "Wright",
+                email: "mark@example.com",
+                password: "password1", 
+                password_confirmation: "password1")
 mark.skip_confirmation!
 mark.save!
 
-kevin = User.new(first_name: "Kevin",
-    last_name: "Holmes",
-    email: "kevin@example.com",
-    password: "password1", 
-    password_confirmation: "password1")
+kevin = User.new(username: "kevinholmes334",
+                 first_name: "Kevin",
+                 last_name: "Holmes",
+                 email: "kevin@example.com",
+                 password: "password1", 
+                 password_confirmation: "password1")
 kevin.skip_confirmation!
 kevin.save!
 

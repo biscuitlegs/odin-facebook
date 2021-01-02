@@ -47,7 +47,7 @@
         </div>
         <div class="navbar-end">
           <% if user_signed_in? %>
-            <a href="<%= user_path(current_user) %>" class="navbar-item">
+            <a href="<%= profile_path(current_user.username) %>" class="navbar-item">
               <span class="icon"><i class="fas fa-user-circle"></i></span>
               <span>Profile</span>
             </a>

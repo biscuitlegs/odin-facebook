@@ -8,8 +8,8 @@
                     <% sending_user = User.find(request.sending_user_id) %>
                         <div class="columns is-mobile is-centered">
                             <div class="column is-narrow">
-                                <a href="<%= user_path(sending_user) %>">
-                                    <p class="image is-64x64">
+                                <a href="<%= profile_path(sending_user.username) %>">
+                                    <p class="image is-96x96">
                                         <%= image_tag sending_user.primary_profile_picture, class: "is-rounded" %>
                                     </p>
                                 </a>
@@ -17,24 +17,30 @@
                         </div>
 
                         <div class="has-text-centered mb-3">
-                            <a href="<%= user_path(sending_user) %>">
-                                <p class="is-size-5">
-                                    <%= sending_user.full_name %>
+                            <a href="<%= profile_path(sending_user.username) %>">
+                                <p>
+                                    <strong><%= sending_user.full_name %></strong> @<%= sending_user.username %>
                                 </p>
                             </a>
                         </div>
-                    
-                        <div class="has-text-centered">
-                            <a href="<%= friendships_path(friendship: { friend_one_id: request.sending_user_id, friend_two_id: request.receiving_user_id }, friend_request_id: request.id) %>" class="button is-primary" data-method="post">
-                                <span class="icon is-large"><i class="fas fa-check-circle fa-lg"></i></span>
-                                <span>Accept</span>
-                            </a>
-                        </div>
-                        <div class="has-text-centered">
-                            <a href="<%= friend_request_path(request) %>" class="button is-danger" data-method="delete">
-                                <span class="icon is-large"><i class="fas fa-times-circle fa-lg"></i></span>
-                                <span>Decline</span>
-                            </a>
+
+                        <div class="columns is-centered is-mobile">
+                            <div class="column is-narrow">
+                                <div class="level">
+                                    <div>
+                                        <a href="<%= friendships_path(friendship: { friend_one_id: request.sending_user_id, friend_two_id: request.receiving_user_id }, friend_request_id: request.id) %>" class="button is-primary" data-method="post">
+                                            <span class="icon is-large"><i class="fas fa-check-circle fa-lg"></i></span>
+                                            <span>Accept</span>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="<%= friend_request_path(request) %>" class="button is-danger" data-method="delete">
+                                            <span class="icon is-large"><i class="fas fa-times-circle fa-lg"></i></span>
+                                            <span>Decline</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     <hr>
                 <% end %>
@@ -50,8 +56,8 @@
 
                     <div class="columns is-mobile is-centered">
                         <div class="column is-narrow">
-                            <a href="<%= user_path(receiving_user) %>">
-                                <p class="image is-64x64">
+                            <a href="<%= profile_path(receiving_user.username) %>">
+                                <p class="image is-96x96">
                                     <%= image_tag receiving_user.primary_profile_picture, class: "is-rounded" %>
                                  </p>
                             </a>
@@ -59,9 +65,9 @@
                     </div>
 
                     <div class="has-text-centered mb-3">
-                        <a href="<%= user_path(receiving_user) %>">
-                            <p class="is-size-5">
-                                <%= receiving_user.full_name %>
+                        <a href="<%= profile_path(receiving_user.username) %>">
+                            <p>
+                                <strong><%= receiving_user.full_name %></strong> @<%= receiving_user.username %>
                             </p>
                         </a>
                     </div>

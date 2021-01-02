@@ -13,10 +13,11 @@ class User < ApplicationRecord
   has_many :received_friend_requests, class_name: "FriendRequest", foreign_key: "receiving_user_id", dependent: :destroy
   has_many :sent_friend_requests, class_name: "FriendRequest", foreign_key: "sending_user_id", dependent: :destroy
 
+  validates :username, presence: true, uniqueness: true, length: { minimum: 5, maximum: 25 }, allow_blank: false
   validates :first_name, presence: true, length: { maximum: 15 }, allow_blank: false
   validates :last_name, presence: true, length: { maximum: 15 }, allow_blank: false
   validates :email, presence: true, uniqueness: true, length: { maximum: 30 }, allow_blank: false
-  validates :password, presence: true, length: { minimum: 6, maximum: 12 }, format: { with: /.*\d.*/ }, unless: :from_omniauth?
+  validates :password, presence: true, length: { minimum: 6, maximum: 12 }, format: { with: /.*\d.*/ }, if: :password, unless: :from_omniauth?
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -47,6 +48,7 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0, 20]
       user.parse_name(auth.info.name)
       user.facebook_profile_picture = auth.info.image
+      user.username = username_from_full_name(auth.info.name)
     end
   end
 
@@ -75,5 +77,16 @@ class User < ApplicationRecord
 
   def from_omniauth?
     provider && uid
+  end
+
+  def username_from_full_name(full_name)
+    simple_name = full_name.gsub(" ", "").downcase
+    number = 1
+
+    until User.where(username: simple_name + number.to_s).empty?
+      number += 1
+    end
+
+    simple_name + number.to_s
   end
 end

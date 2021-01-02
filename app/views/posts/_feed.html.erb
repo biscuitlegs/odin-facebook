@@ -1,7 +1,7 @@
 <% @posts.each do |post| %>
     <article class="media">
         <figure class="media-left">
-            <a href="<%= user_path(post.user) %>">
+            <a href="<%= profile_path(post.user.username) %>">
                 <p class="image is-64x64">
                     <%= image_tag post.user.primary_profile_picture, class: "is-rounded" %>
                 </p>
@@ -21,8 +21,9 @@
                     </a>
                 <% end %>
 
-                <a href="<%= user_path(post.user) %>">
-                    <strong><%= post.user.full_name %></strong>
+                <a href="<%= profile_path(post.user.username) %>">
+                    <strong><%= post.user.full_name %></strong> @<%= post.user.username %>
+
                 </a>
                 <small><%= distance_of_time_in_words(Time.now, post.created_at) %> ago</small>
                 </p>
@@ -85,7 +86,7 @@
                 <% post.comments.each do |comment| %>
                     <article class="media">
                         <figure class="media-left">
-                            <a href="<%= user_path(comment.creator) %>">
+                            <a href="<%= profile_path(comment.creator.username) %>">
                                 <p class="image is-64x64">
                                     <%= image_tag comment.user.primary_profile_picture, class: "is-rounded" %>
                                 </p>
@@ -105,8 +106,8 @@
                                             <span class="icon"><i class="fas fa-user-plus"></i></span>
                                         </a>
                                     <% end %>
-                                    <a href="<%= user_path(comment.creator) %>">
-                                        <strong><%= comment.creator.full_name %></strong>
+                                    <a href="<%= profile_path(comment.creator.username) %>">
+                                        <strong><%= comment.creator.full_name %></strong> @<%= comment.creator.username %>
                                     </a>
                                     <small><%= distance_of_time_in_words(Time.now, comment.created_at)%> ago</small>
                                     <br>

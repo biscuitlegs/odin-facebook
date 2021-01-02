@@ -12,13 +12,13 @@ class FriendRequestFlowTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     get "/friend_requests"
-    assert_select "p", users(:emma).full_name
+    assert_select "p", "#{users(:emma).full_name} @#{users(:emma).username}"
   end
 
   test "user can see received friend requests" do
     sign_in users(:emma)
     get "/friend_requests"
-    assert_select "p", users(:david).full_name
+    assert_select "p", "#{users(:david).full_name} @#{users(:david).username}"
   end
 
   test "user can accept received friend requests" do
@@ -36,7 +36,7 @@ class FriendRequestFlowTest < ActionDispatch::IntegrationTest
     
     get "/friends"
     assert_response :success
-    assert_select "p", users(:david).full_name
+    assert_select "p", "#{users(:david).full_name} @#{users(:david).username}"
   end
 
   test "user can decline received friend requests" do
@@ -48,7 +48,7 @@ class FriendRequestFlowTest < ActionDispatch::IntegrationTest
     
     get "/friend_requests"
     assert_response :success
-    assert_select "p", { text: users(:david).full_name, count: 0}
+    assert_select "p", { text: "#{users(:david).full_name} @#{users(:david).username}", count: 0}
   end
 
   test "user can not send a friend request from another user" do
@@ -60,7 +60,7 @@ class FriendRequestFlowTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     get "/friend_requests"
-    assert_select "p", { text: users(:emma).full_name, count: 0 }
+    assert_select "p", { text: "#{users(:emma).full_name} @#{users(:emma).username}", count: 0 }
   end
 
   test "user can not accept another users's received friend requests" do

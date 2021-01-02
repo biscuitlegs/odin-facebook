@@ -9,16 +9,16 @@
                     <div class="level">
                         <div class="level-left">
                             <div class="level-item has-text-centered">
-                                <a href="<%= user_path(friend) %>">
+                                <a href="<%= profile_path(friend.username) %>">
                                     <p class="image is-64x64">
                                         <%= image_tag friend.primary_profile_picture, class: "is-rounded" %>
                                     </p>
                                 </a>
                             </div>
                             <div class="level-item has-text-centered">
-                                <a href="<%= user_path(friend) %>">
-                                    <p class="is-size-5">
-                                        <%= friend.full_name %>
+                                <a href="<%= profile_path(friend.username) %>">
+                                    <p>
+                                        <strong><%= friend.full_name %></strong> @<%= friend.username %>
                                     </p>
                                 </a>
                             </div>

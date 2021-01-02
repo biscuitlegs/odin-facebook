@@ -21,7 +21,7 @@
         <% @users.each do |user| %>
             <div class="level">
                 <div class="level-left">
-                    <a href="<%= user_path(user) %>" class="level-item">
+                    <a href="<%= profile_path(user.username) %>" class="level-item">
                         <div class="level">
                             <div class="level-item has-text-centered">
                                 <p class="image is-64x64">
@@ -29,8 +29,8 @@
                                 </p>
                             </div>
                             <div class="level-item has-text-centered">
-                                <p class="is-size-5">
-                                    <%= user.full_name %>
+                                <p>
+                                    <strong><%= user.full_name %></strong> @<%= user.username %>
                                 </p>
                             </div>
                         </div>
