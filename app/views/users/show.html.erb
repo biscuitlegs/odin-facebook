@@ -89,21 +89,15 @@
                                 <span class="icon">
                                     <i class="fab fa-facebook-square"></i>
                                 </span>
-                                <span>Linked with Facebook</span>
+                                <span>Authenticated with Facebook</span>
                             </span>
                         </div>
                     </div>
                     
                 <% end %>
 
-                <% if current_user.provider != "facebook" && current_user.id == @user.id %>
+                <% if current_user.id == @user.id %>
                     <%= render "users/form" %>
-                <% end %>
-
-                <% if current_user.provider == "facebook" && current_user.id == @user.id %>
-                    <div class="notification">
-                        <p>Whenever you update your Facebook profile, any changes will automatically carry over to your profile here.</p>
-                    </div>
                 <% end %>
 
                 <% if @user.id == current_user.id %>

@@ -48,7 +48,7 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0, 20]
       user.parse_name(auth.info.name)
       user.facebook_profile_picture = auth.info.image
-      user.username = username_from_full_name(auth.info.name)
+      user.parse_username(auth.info.name)
     end
   end
 
@@ -66,10 +66,10 @@ class User < ApplicationRecord
   end
 
   def primary_profile_picture
-    if self.facebook_profile_picture
-      self.facebook_profile_picture
-    elsif self.profile_picture.attached?
+    if self.profile_picture.attached? 
       self.profile_picture.variant(resize_to_fill: [128, 128])
+    elsif self.facebook_profile_picture
+      self.facebook_profile_picture
     else
       "https://bulma.io/images/placeholders/128x128.png"
     end
@@ -79,14 +79,19 @@ class User < ApplicationRecord
     provider && uid
   end
 
-  def username_from_full_name(full_name)
+  def parse_username(full_name)
     simple_name = full_name.gsub(" ", "").downcase
     number = 1
+    self.username = "#{simple_name}#{number.to_s}"
+    self.valid?
 
-    until User.where(username: simple_name + number.to_s).empty?
+    until self.errors[:username].none?
       number += 1
+      self.username = simple_name + number.to_s
+      self.valid?
     end
 
-    simple_name + number.to_s
+    self.username = "#{simple_name}#{number.to_s}"
   end
+  
 end
